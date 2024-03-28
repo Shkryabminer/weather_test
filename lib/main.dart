@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:weather_test/data/repositories/city_repository.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  var repo = CityRepository();
+  var data = await repo.getCities();
+
   runApp(const MyApp());
 }
 
