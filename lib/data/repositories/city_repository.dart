@@ -10,8 +10,10 @@ class CityRepository {
     List<CityModel>? cities;
     try {
       var source = await _getSource();
-      var cityEntities = source.map((e) => CityModelEntity.fromJson(e)).toList();
-      cities = List<CityModel>.from(cityEntities.map((e) => e.toCityModel()));
+      if (source != null) {
+        var cityEntities = source.map((e) => CityModelEntity.fromJson(e)).toList();
+        cities = List<CityModel>.from(cityEntities.map((e) => e.toCityModel()));
+      }
     } catch (e) {
       debugPrint(e.toString());
     }
