@@ -9,14 +9,24 @@ class CityRepository {
   Future<List<CityModel>?> getCities() async {
     List<CityModel>? cities;
     try {
-      var data = await rootBundle.loadString("assets/cities.json");
-      var catalogData = json.decode(data);
-      var cityEntities = catalogData.map((e) => CityModelEntity.fromJson(e)).toList();
-      cities = cityEntities.map((e) => e.toCityModel()).toList();
+      var source = await _getSource();
+      var cityEntities = source.map((e) => CityModelEntity.fromJson(e)).toList();
+      cities = List<CityModel>.from(cityEntities.map((e) => e.toCityModel()));
     } catch (e) {
       debugPrint(e.toString());
     }
 
     return cities;
+  }
+
+  Future<dynamic> _getSource() async {
+    dynamic? source;
+    try {
+      var data = await rootBundle.loadString("assets/cities.json");
+      source = json.decode(data);
+    } catch (error) {
+      debugPrint(error.toString());
+    }
+    return source;
   }
 }
