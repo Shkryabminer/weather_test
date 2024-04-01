@@ -56,11 +56,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
               });
             },
             cursorColor: const Color(0xFFF5F5FF),
-            style: const TextStyle(
-                //fontFamily: FontFamily.roboto,
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-                color: Color(0xFFF5F5FF)),
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Color(0xFFF5F5FF)),
             decoration: InputDecoration(
                 hintStyle: const TextStyle(color: Color(0xFFF5F5FF), textBaseline: TextBaseline.alphabetic),
                 hintText: widget?.placeholder,

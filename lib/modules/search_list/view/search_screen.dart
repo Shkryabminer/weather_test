@@ -18,7 +18,6 @@ class SearchScreen extends StatelessWidget {
     // TODO: implement build
     return Container(
       decoration: const BoxDecoration(
-        //color: Colors.red
         gradient: LinearGradient(
             colors: [Color(0xff2E335A), Color(0xff1C1B33)], begin: Alignment.topCenter, end: Alignment.bottomCenter),
       ),
@@ -45,8 +44,8 @@ class SearchScreen extends StatelessWidget {
                           context.router.popForced();
                         },
                         child: SizedBox(
-                          height: 24,
-                          width: 24,
+                          height: 30,
+                          width: 30,
                           child: SvgPicture.asset(
                             'assets/images/chevron_left.svg',
                             color: Colors.white,
