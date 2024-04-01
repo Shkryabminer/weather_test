@@ -6,7 +6,7 @@ import 'package:weather_test/domain/models/city_model.dart';
 import 'package:weather_test/modules/search_list/search_list_cubit_state.dart';
 
 class SearchListCubit extends Cubit<SearchListState> {
-  SearchListCubit(this._cityRepository, super.initialState) {
+  SearchListCubit(this._cityRepository) : super(SearchListState.defaultState()) {
     getCities();
   }
 

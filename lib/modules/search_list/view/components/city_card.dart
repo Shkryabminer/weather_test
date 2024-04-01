@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weather_test/domain/models/city_model.dart';
 
 class CityCard extends StatelessWidget {
@@ -14,9 +15,9 @@ class CityCard extends StatelessWidget {
         callBack?.call();
       },
       child: Container(
-        height: 70,
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: const Color(0xFF362979)),
+        height: 70.h,
+        padding: EdgeInsets.symmetric(horizontal: 12.w),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12.w), color: const Color(0xFF362979)),
         child: Row(
           children: [
             Expanded(
@@ -33,6 +34,6 @@ class CityCard extends StatelessWidget {
   }
 
   TextStyle _getTextStyle() {
-    return const TextStyle(fontSize: 24, fontWeight: FontWeight.w300, color: Color(0xFFFFFFFF));
+    return TextStyle(fontSize: 24.h, fontWeight: FontWeight.w300, color: const Color(0xFFFFFFFF));
   }
 }
