@@ -48,3 +48,5 @@ app.*.map.json
 *.pbxproj
 *.xcworkspacedata
 ios/Podfile
+*.xcconfig
+*.xcworkspacedata

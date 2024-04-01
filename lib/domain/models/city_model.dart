@@ -1,4 +1,4 @@
-import 'package:weather_test/data/entities/city_model_entity.dart';
+import 'package:weather_test/data/entities/city_entity/city_entity_model.dart';
 
 class CityModel {
   CityModel(
@@ -26,7 +26,7 @@ class CityModel {
   final String? population;
   final String id;
 
-  CityModelEntity toCityModelEntity() => CityModelEntity(
+  CityEntityModel toCityModelEntity() => CityEntityModel(
       city: city,
       lat: lat,
       lng: lng,
