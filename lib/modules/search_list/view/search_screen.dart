@@ -25,6 +25,7 @@ class SearchScreen extends StatelessWidget {
       child: SafeArea(
         top: true,
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
           backgroundColor: Colors.transparent,
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -40,7 +41,9 @@ class SearchScreen extends StatelessWidget {
                       height: 50,
                       alignment: Alignment.centerLeft,
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          context.router.popForced();
+                        },
                         child: SizedBox(
                           height: 24,
                           width: 24,
@@ -53,8 +56,11 @@ class SearchScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Container(
-                      height: 44,
+                      height: 50,
                       decoration:
                           BoxDecoration(color: const Color(0xFF1F1F3C), borderRadius: BorderRadius.circular(10)),
                       child: CustomSearchBar(

@@ -21,19 +21,11 @@ class CityCard extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                "${city.city},",
+                "${city.city}, ${city.country}",
                 maxLines: 1,
                 style: _getTextStyle(),
               ),
             ),
-            Expanded(
-              child: Text(
-                "${city.country}",
-                maxLines: 1,
-                style: _getTextStyle(),
-                overflow: TextOverflow.ellipsis,
-              ),
-            )
           ],
         ),
       ),

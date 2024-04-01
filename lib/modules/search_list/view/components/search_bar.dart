@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class CustomSearchBar extends StatefulWidget {
@@ -14,11 +16,18 @@ class CustomSearchBar extends StatefulWidget {
 }
 
 class _CustomSearchBarState extends State<CustomSearchBar> {
-  late bool menuIsShown;
+  Timer? _throttleTimer;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _throttleTimer?.cancel();
   }
 
   @override
@@ -28,24 +37,32 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: const Icon(Icons.search, color: Color(0xFFF5F5FF)),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.0),
+          child: Icon(
+            Icons.search,
+            color: Color(0xFFF5F5FF),
+            size: 30,
+          ),
         ),
         Expanded(
           child: TextField(
             onChanged: (text) {
-              widget.onChanged?.call(text);
+              if (_throttleTimer?.isActive ?? false) {
+                _throttleTimer?.cancel();
+              }
+              _throttleTimer = Timer(const Duration(milliseconds: 1000), () async {
+                widget.onChanged?.call(text);
+              });
             },
-            cursorColor: Color(0xFFF5F5FF),
-            cursorHeight: 20,
+            cursorColor: const Color(0xFFF5F5FF),
             style: const TextStyle(
                 //fontFamily: FontFamily.roboto,
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
                 color: Color(0xFFF5F5FF)),
             decoration: InputDecoration(
-                hintStyle: const TextStyle(color: Color(0xFFF5F5FF)),
+                hintStyle: const TextStyle(color: Color(0xFFF5F5FF), textBaseline: TextBaseline.alphabetic),
                 hintText: widget?.placeholder,
                 filled: true,
                 contentPadding: EdgeInsets.zero,
@@ -63,49 +80,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
             },
           ),
         ),
-        // Row(
-        //   children: [
-        //     if (widget.controller.text.isNotEmpty)
-        //       InkWell(
-        //         onTap: () {},
-        //         child: IconButton(
-        //           icon: _buildCleanButton(context),
-        //           onPressed: () {
-        //             widget.controller.text = '';
-        //             setState(() {});
-        //           },
-        //         ),
-        //       ),
-        //     InkWell(
-        //       onTap: () {
-        //         widget.onMenuTap?.call();
-        //         setState(() {
-        //           menuIsShown = !menuIsShown;
-        //         });
-        //       },
-        //       child: SvgPicture.asset(
-        //         Assets.images.icMore.path,
-        //         color: menuIsShown ? filesColors.primary500 : filesColors.black600,
-        //         height: 24.h,
-        //       ),
-        //     ),
-        //   ],
-        // ),
       ],
     );
   }
-
-  // Widget _buildCleanButton(BuildContext context) {
-  //   //var filesColors = Theme.of(context).extension<FileColors>()!;
-  //   return Container(
-  //     // height: 18.h,
-  //     // width: 18.h,
-  //     decoration: BoxDecoration(color: filesColors.black400, borderRadius: BorderRadius.circular(10.h)),
-  //     child: Icon(
-  //       Icons.close,
-  //       color: filesColors.black600,
-  //       size: 15.h,
-  //     ),
-  //   );
-  // }
 }

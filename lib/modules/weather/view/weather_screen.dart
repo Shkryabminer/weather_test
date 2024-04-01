@@ -25,6 +25,7 @@ class WeatherScreen extends StatelessWidget {
       child: SafeArea(
         top: true,
         child: Scaffold(
+            resizeToAvoidBottomInset: false,
             backgroundColor: Colors.transparent,
             body: BlocProvider<WeatherCubit>(
               create: (context) => WeatherCubit(GetIt.I.get(), GetIt.I.get()),
@@ -51,6 +52,9 @@ class WeatherScreen extends StatelessWidget {
                                   },
                                   child: SvgPicture.asset('assets/images/ic_search.svg')),
                             )),
+                      ),
+                      const SizedBox(
+                        height: 100,
                       ),
                       Column(
                         children: [
@@ -86,14 +90,12 @@ class WeatherScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 100,
-                      ),
                       const Spacer(),
                       Align(
                         alignment: Alignment.bottomCenter,
                         child: Image.asset(
                           'assets/images/house.png',
+                          fit: BoxFit.cover,
                         ),
                       )
                     ],
